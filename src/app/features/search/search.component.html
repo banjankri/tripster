@@ -1,0 +1,6 @@
+<mat-input-container>
+    <input matInput type="text" placeholder="What plant are you after?" [value]="value" #searchTerm>
+</mat-input-container>
+<button type="button" mat-icon-button (click)="onClick(searchTerm.value)">
+    <mat-icon>search</mat-icon>
+</button>
