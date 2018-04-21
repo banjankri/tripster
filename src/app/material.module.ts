@@ -13,6 +13,7 @@ import {
   MatTableModule,
   MatToolbarModule,
   MatProgressSpinnerModule,
+  MatSortModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -28,6 +29,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatMenuModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
@@ -43,6 +45,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatMenuModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatSortModule,
     MatTableModule,
     MatToolbarModule,
     MatProgressSpinnerModule,

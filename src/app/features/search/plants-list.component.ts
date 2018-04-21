@@ -1,37 +1,32 @@
-import * as RoutingActions from '../routing/routing.actions';
-
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { Component, ViewChild, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
-
-import { PlantActions } from './../../store/plant/plant.actions';
-import { AppState } from './../../store/reducers';
-import { Plant } from './../../store/plant/plant.model';
-import { DataSource } from '@angular/cdk/table';
-import { MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { tap, takeUntil } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-
-import * as fromPlants from './../../store/plant';
-import { ActivatedRoute, Params } from '@angular/router';
+import { PlantActions } from '../../store/plant/plant.actions';
+import * as RoutingActions from '../routing/routing.actions';
+import { Plant } from './../../store/plant/plant.model';
+import { AppState } from './../../store/reducers';
 
 @Component({
     templateUrl: './plants-list.component.html'
 })
-export class PlantsListComponent implements AfterViewInit, OnDestroy, OnInit {
+export class PlantsListComponent implements OnDestroy, OnInit {
     plants$: Observable<Plant[]>;
 
     displayedColumns = ['canonicalName', 'class'];
-    dataSource = new PlantsDataSource(this.store);
+
+    dataSource = new MatTableDataSource<Plant>([]);
     selection = new SelectionModel<Plant>(false, null);
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
     private unsubscribe = new Subject<void>();
 
     constructor(private store: Store<AppState>, private plantActions: PlantActions, private activatedRoute: ActivatedRoute) {
-        this.plants$ = store.select(state => state.plantsState.plants);
     }
 
     plantSelected(plant: Plant, $event: Event) {
@@ -43,37 +38,20 @@ export class PlantsListComponent implements AfterViewInit, OnDestroy, OnInit {
 
     ngOnInit() {
         this.store.dispatch(this.plantActions.search(this.activatedRoute.snapshot.queryParams['query']));
-    }
 
-    /**
-      * Set the paginator after the view init since this component will
-      * be able to query its view for the initialized paginator.
-      */
-    ngAfterViewInit() {
-        this.paginator.page.pipe(
-            takeUntil(this.unsubscribe),
-            tap(() => {
-                this.store.dispatch(this.plantActions.doPage(this.paginator.pageIndex, this.paginator.pageSize));
-            }),
-        ).subscribe();
+        this.plants$ = this.store.select(state => state.plantsState.plants);
+        this.plants$.subscribe(plants => this.initDataSource(plants));
+        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     }
 
     ngOnDestroy() {
         this.unsubscribe.next();
         this.unsubscribe.complete();
     }
-}
 
-
-export class PlantsDataSource extends DataSource<Plant> {
-
-    constructor(private store: Store<AppState>) {
-        super();
+    private initDataSource(plants: Plant[]) {
+        this.dataSource = new MatTableDataSource<Plant>(plants);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
     }
-
-    connect(): Observable<Plant[]> {
-        return this.store.select(fromPlants.pagedPlants);
-    }
-
-    disconnect() {}
 }
