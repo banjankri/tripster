@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { getPlants } from '../../store/plant';
 import { PlantActions } from '../../store/plant/plant.actions';
 import * as RoutingActions from '../routing/routing.actions';
 import { Plant } from './../../store/plant/plant.model';
@@ -54,7 +55,7 @@ export class PlantsListComponent implements OnDestroy, OnInit {
         this.searchTerm = querySearchTerm;
         this.searchPlants(querySearchTerm);
 
-        this.plants$ = this.store.select(state => state.plantsState.plants);
+        this.plants$ = this.store.select(getPlants);
         this.plants$.subscribe(plants => this.initDataSource(plants));
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     }
