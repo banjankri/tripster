@@ -2,16 +2,6 @@
     <h3> Welcome to the Dashboard {{user.name}}!</h3>
 </header>
 <section>
-    <ng-container *ngIf="testSub$ | async">Api test sub: {{ testSub$ | async }}</ng-container>
-    <form [formGroup]="form" (ngSubmit)="submitState()" autocomplete="off">
-        <mat-input-container>
-            <input matInput formControlName="name" [placeholder]="nameLabel">
-        </mat-input-container>
-        <br>
-        <button mat-raised-button color="primary">Update store</button>
-        <button mat-raised-button color="accent" type="button" (click)="clearName()" class="clear-button">Clear name</button>
-    </form>
-
     <app-search value="" (search)="searchTerm($event)"></app-search>
     <br><br>
     <button id="my-logout-button" mat-raised-button color="accent" (click)="logout()">Logout</button>

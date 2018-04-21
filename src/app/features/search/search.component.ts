@@ -1,10 +1,10 @@
-import { OnInit, Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html'
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
     @Input()
     public value: string;
@@ -13,10 +13,6 @@ export class SearchComponent implements OnInit {
     public search: EventEmitter<any> = new EventEmitter();
 
     constructor() {
-        console.log('search component!');
-    }
-
-    ngOnInit(): void {
     }
 
     onClick(searchTerm: string): void {

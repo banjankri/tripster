@@ -23,6 +23,7 @@ export class PlantsListComponent implements OnDestroy, OnInit {
 
     dataSource = new MatTableDataSource<Plant>([]);
     selection = new SelectionModel<Plant>(false, null);
+    searchTerm: string;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -43,8 +44,15 @@ export class PlantsListComponent implements OnDestroy, OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    searchPlants(term: string) {
+        this.store.dispatch(this.plantActions.search(term));
+    }
+
     ngOnInit() {
-        this.store.dispatch(this.plantActions.search(this.activatedRoute.snapshot.queryParams['query']));
+        const querySearchTerm = this.activatedRoute.snapshot.queryParams['query'];
+
+        this.searchTerm = querySearchTerm;
+        this.searchPlants(querySearchTerm);
 
         this.plants$ = this.store.select(state => state.plantsState.plants);
         this.plants$.subscribe(plants => this.initDataSource(plants));

@@ -1,6 +1,8 @@
 <div>
     <h1>Plants</h1>
 
+    <app-search [value]="searchTerm" (search)="searchPlants($event.searchTerm)"></app-search>
+
     <div class="table-container mat-elevation-z8">
         <div class="table-header">
             <mat-form-field>
