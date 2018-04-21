@@ -19,7 +19,6 @@ export class LoginComponent {
     error: any;
 
     constructor(public af: AngularFireAuth, private router: Router, private store: Store<AppState>) {
-        this.af.authState.subscribe(this.loggedIn.bind(this));
     }
 
     loginFb() {
