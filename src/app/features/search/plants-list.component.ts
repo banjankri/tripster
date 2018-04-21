@@ -11,7 +11,10 @@ import { Plant } from './../../store/plant/plant.model';
 import { AppState } from './../../store/reducers';
 
 @Component({
-    templateUrl: './plants-list.component.html'
+    templateUrl: './plants-list.component.html',
+    styleUrls: [
+        './plant-list.component.scss'
+    ]
 })
 export class PlantsListComponent implements OnDestroy, OnInit {
     plants$: Observable<Plant[]>;
@@ -34,6 +37,10 @@ export class PlantsListComponent implements OnDestroy, OnInit {
         this.store.dispatch(new RoutingActions.Go({path: ['/details']}));
 
         $event.preventDefault();
+    }
+
+    applyFilter(filterValue: string) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
     ngOnInit() {
