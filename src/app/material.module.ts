@@ -12,6 +12,7 @@ import {
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -29,6 +30,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     CdkTableModule,
@@ -43,6 +45,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule {}

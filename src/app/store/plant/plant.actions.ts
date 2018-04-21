@@ -14,6 +14,8 @@ export class PlantActions {
 
     static OCCURENCES_LOADED = 'OCCURENCES_LOADED';
 
+    static DO_PAGE = 'DO_PAGE';
+
     search(searchTerm: string) {
         return {
             type: PlantActions.SEARCH,
@@ -39,6 +41,16 @@ export class PlantActions {
         return {
             type: PlantActions.OCCURENCES_LOADED,
             payload: occurences
+        };
+    }
+
+    doPage(pageIndex, pageSize) {
+        return {
+            type: PlantActions.DO_PAGE,
+            payload: {
+                pageIndex,
+                pageSize
+            }
         };
     }
 }

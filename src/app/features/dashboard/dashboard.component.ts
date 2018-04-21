@@ -31,7 +31,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
     constructor(
       private fb: FormBuilder,
       private store: Store<AppState>,
-      private plantActions: PlantActions,
     ) {
       this.form = fb.group({
         name: ''
@@ -64,7 +63,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
     }
 
     public searchTerm($event): void {
-      this.store.dispatch(this.plantActions.search($event.searchTerm));
       this.store.dispatch(
         new RoutingActions.Go({ path: ['/plants-list'], query: { query: $event.searchTerm }}));
     }

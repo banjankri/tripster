@@ -6,13 +6,17 @@ export interface PlantsState {
     plants: Plant[];
     currentPlant: Plant;
     occurences: Occurence[];
+    pageSize: number;
+    pageIndex: number;
 }
 
 export const INITIAL_STATE: PlantsState = {
     plants: [],
     currentPlant: {
     },
-    occurences: []
+    occurences: [],
+    pageSize: 10,
+    pageIndex: 0
 };
 
 export function plantReducer(storeState: PlantsState = INITIAL_STATE, action)
@@ -33,6 +37,12 @@ export function plantReducer(storeState: PlantsState = INITIAL_STATE, action)
             return {
                 ...storeState,
                 currentPlant: action.payload
+            };
+        case PlantActions.DO_PAGE:
+            return {
+                ...storeState,
+                pageIndex: action.payload.pageIndex,
+                pageSize: action.payload.pageSize
             };
         default:
             return storeState;

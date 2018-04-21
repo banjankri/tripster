@@ -66,7 +66,7 @@ const deepCombineReducers = (allReducers: any) => {
 };
 
 const createReducer = (asyncReducers = {}) => {
-  let allReducers = { ...syncReducers, ...asyncReducers };
+  const allReducers = { ...syncReducers, ...asyncReducers };
   return deepCombineReducers(allReducers);
 };
 
