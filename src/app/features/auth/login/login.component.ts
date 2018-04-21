@@ -8,14 +8,9 @@ import * as firebaseApp from 'firebase/app';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    animations: [moveIn()]
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-    @HostBinding('@moveIn') get moveIn() {
-        return '';
-    }
 
     error: any;
 
