@@ -1,11 +1,11 @@
-import { AccountDetailsComponent } from './account-details/account-details.component';
 import { Routes } from '@angular/router';
-
+import { AuthGuard } from '../../services/auth.service';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { MembersComponent } from './members/members.component';
-import { AuthGuard } from '../../services/auth.service';
 import { SignupComponent } from './signup/signup.component';
-import { EmailComponent } from './email/email.component';
+
 
 export const authRoutes: Routes = [
     { path: 'login', component: LoginComponent },

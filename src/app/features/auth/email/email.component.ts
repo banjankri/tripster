@@ -1,8 +1,7 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebaseApp from 'firebase/app';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { moveIn, fallIn } from '../../../router.animations';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { fallIn, moveIn } from '../../../router.animations';
 
 @Component({
   selector: 'app-email',

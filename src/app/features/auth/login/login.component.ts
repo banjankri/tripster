@@ -1,12 +1,11 @@
-import * as UserActions from './../../../store/user/user.actions';
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { moveIn } from '../../../router.animations';
-import * as firebaseApp from 'firebase/app';
 import { User } from '@firebase/auth-types';
-import { AppState } from '../../../store/reducers';
 import { Store } from '@ngrx/store';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebaseApp from 'firebase/app';
+import { AppState } from '../../../store/reducers';
+import * as UserActions from './../../../store/user/user.actions';
 
 
 @Component({

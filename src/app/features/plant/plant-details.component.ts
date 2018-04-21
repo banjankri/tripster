@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-
-import { AppState } from './../../store/reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { Occurence } from './../../store/plant/occurence.model';
 import { Plant } from './../../store/plant/plant.model';
+import { AppState } from './../../store/reducers';
+
 
 @Component({
     templateUrl: './plant-details.component.html',

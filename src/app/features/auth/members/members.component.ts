@@ -1,7 +1,7 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { moveIn, fallIn, moveInLeft } from '../../../router.animations';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { fallIn, moveIn, moveInLeft } from '../../../router.animations';
 
 @Component({
   selector: 'app-members',
