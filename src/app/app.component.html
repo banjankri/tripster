@@ -18,10 +18,18 @@
 
             <span class="fill-space"></span>
 
-            <button mat-raised-button (click)="login()" color="accent">
-            <mat-icon>lock</mat-icon>
-            Login
+            <button mat-raised-button (click)="login()" color="accent" *ngIf="!(user$ | async)?.displayName">
+                <mat-icon>lock</mat-icon>
+                Login
             </button>
+
+            <span *ngIf="(user$ | async)?.displayName">
+                <span>{{(user$ | async)?.displayName}}</span>
+            <button mat-raised-button (click)="logout()" color="warn">
+                    <mat-icon>door</mat-icon>
+                    Logout
+                </button>
+            </span>
         </mat-toolbar>
 
         <mat-card id="my-page-card">

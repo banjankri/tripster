@@ -1,3 +1,4 @@
+import { AccountDetailsComponent } from './account-details/account-details.component';
 import { Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
@@ -10,5 +11,6 @@ export const authRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login-email', component: EmailComponent },
-    { path: 'members', component: MembersComponent, canActivate: [AuthGuard] }
+    { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+    { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard] }
 ];

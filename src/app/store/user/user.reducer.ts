@@ -2,7 +2,7 @@
 import { Action } from '@ngrx/store';
 
 import { UserActions, UserActionTypes } from './user.actions';
-import { User } from './user.model';
+import { User } from '@firebase/auth-types';
 
 export interface UserState {
   user: User;
@@ -11,7 +11,7 @@ export interface UserState {
 }
 
 export const INITIAL_STATE: UserState = {
-  user: { name: 'Angular User' },
+  user: null,
   loading: false,
   loaded: true,
 };
@@ -20,6 +20,13 @@ export function userReducer(state = INITIAL_STATE, action: UserActions): UserSta
   switch (action.type) {
 
     case UserActionTypes.EditUser: {
+      return {
+        ...state,
+        user: action.payload
+      };
+    }
+
+    case UserActionTypes.LoginSuccess: {
       return {
         ...state,
         user: action.payload

@@ -1,8 +1,6 @@
 <header>
-    <h3> Welcome to the Dashboard {{user.name}}!</h3>
+    <h3> Welcome to the Dashboard!</h3>
 </header>
 <section>
     <app-search value="" (search)="searchTerm($event)"></app-search>
-    <br><br>
-    <button id="my-logout-button" mat-raised-button color="accent" (click)="logout()">Logout</button>
 </section>
