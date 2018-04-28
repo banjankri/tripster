@@ -7,18 +7,18 @@ import { routes } from './plants-list.routing';
 import { SearchComponent } from './search.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterModule.forChild(routes),
-    ],
-    declarations: [
-        PlantsListComponent,
-        SearchComponent
-    ],
-    exports: [
-        PlantsListComponent,
-        SearchComponent
-    ]
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule.forChild(routes),
+  ],
+  declarations: [
+    PlantsListComponent,
+    SearchComponent,
+  ],
+  exports: [
+    PlantsListComponent,
+    SearchComponent,
+  ],
 })
 export class SearchModule { }

@@ -11,13 +11,13 @@ import * as RoutingActions from './../routing/routing.actions';
 })
 export class DashboardComponent {
 
-    constructor(
+  constructor(
       private store: Store<AppState>,
     ) {
-    }
+  }
 
-    searchTerm($event): void {
-      this.store.dispatch(
-        new RoutingActions.Go({ path: ['/plants-list'], query: { query: $event.searchTerm }}));
-    }
+  searchTerm($event): void {
+    this.store.dispatch(
+        new RoutingActions.Go({ path: ['/plants-list'], query: { query: $event.searchTerm } }));
+  }
 }

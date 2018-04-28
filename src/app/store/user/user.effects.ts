@@ -12,7 +12,7 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private af: AngularFireAuth
+    private af: AngularFireAuth,
   ) { }
 
   @Effect() logout$ = this.actions$
@@ -20,11 +20,11 @@ export class UserEffects {
     // .map((action: Logout) => action.payload)
     .switchMap(() => Observable.fromPromise(this.af.auth.signOut())
       .mergeMap((res) => Observable.of(
-        new LogoutSuccess(res)
-      )
+        new LogoutSuccess(res),
+      ),
       )
       .catch((err) => Observable.of(
-        new LogoutFail(err)
-      ))
+        new LogoutFail(err),
+      )),
     );
 }

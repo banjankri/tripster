@@ -4,10 +4,10 @@ import { PlantsListComponent } from './plants-list.component';
 export const routes: Routes = [
   {
     path: 'plants-list',
-    component: PlantsListComponent
+    component: PlantsListComponent,
   }, {
     path: 'details',
     loadChildren: '../plant/index#PlantDetailsModule',
-  }
+  },
 
 ];

@@ -1,3 +1,3 @@
 export interface Activity {
-    name: string;
+  name: string;
 }

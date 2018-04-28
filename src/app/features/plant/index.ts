@@ -9,15 +9,15 @@ import { PlantDetailsComponent } from './plant-details.component';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyANsV8dNWD2LIceIjx0s_pe4TCixHgygwg'
-        }),
-    ],
-    declarations: [
-        PlantDetailsComponent
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyANsV8dNWD2LIceIjx0s_pe4TCixHgygwg',
+    }),
+  ],
+  declarations: [
+    PlantDetailsComponent,
+  ],
 })
 export class PlantDetailsModule { }

@@ -49,6 +49,6 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTableModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-  ]
+  ],
 })
 export class MaterialModule {}

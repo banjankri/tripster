@@ -1,3 +1,3 @@
 export interface Party {
-    id: string;
+  id: string;
 }

@@ -21,14 +21,14 @@ export function userReducer(state = INITIAL_STATE, action: UserActions): UserSta
     case UserActionTypes.EditUser: {
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
     }
 
     case UserActionTypes.LoginSuccess: {
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
     }
 

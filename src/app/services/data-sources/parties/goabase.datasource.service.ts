@@ -6,24 +6,24 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class GOABaseDataSourceService {
 
-    constructor(private http: Http) {
+  constructor(private http: Http) {
         // this.getEaxmpleOccurence();
-    }
+  }
 
-    closestNParties(amount: number) {
-        return this.errorWrapper(this.get(`party/json/?limit=${amount}`)
+  closestNParties(amount: number) {
+    return this.errorWrapper(this.get(`party/json/?limit=${amount}`)
             .map(res => res.json().partyList));
-    }
+  }
 
-    private errorWrapper(call: Observable<Response>) {
-        return call.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    }
+  private errorWrapper(call: Observable<Response>) {
+    return call.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
-    private get(url) {
-        return this.http.get(GOABaseDataSourceService.API_URL + url);
-    }
+  private get(url) {
+    return this.http.get(GOABaseDataSourceService.API_URL + url);
+  }
 
-    static get API_URL(): string {
-        return 'https://www.goabase.net/api/';
-    }
+  static get API_URL(): string {
+    return 'https://www.goabase.net/api/';
+  }
 }

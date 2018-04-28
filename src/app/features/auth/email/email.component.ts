@@ -7,27 +7,27 @@ import { fallIn, moveIn } from '../../../router.animations';
   selector: 'app-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.css'],
-  animations: [moveIn(), fallIn()]
+  animations: [moveIn(), fallIn()],
 })
 export class EmailComponent implements OnInit {
 
-    @HostBinding('@moveIn') get moveIn() {
-        return '';
-    }
+  @HostBinding('@moveIn') get moveIn() {
+    return '';
+  }
 
-    state = '';
-    error: any;
+  state = '';
+  error: any;
 
-    email = '';
-    password = '';
+  email = '';
+  password = '';
 
-    constructor(public af: AngularFireAuth, private router: Router) {
-        this.af.authState.subscribe(auth => {
-        if (auth) {
-            this.router.navigateByUrl('/members');
-        }
-        });
-    }
+  constructor(public af: AngularFireAuth, private router: Router) {
+    this.af.authState.subscribe(auth => {
+      if (auth) {
+        this.router.navigateByUrl('/members');
+      }
+    });
+  }
 
 
   onSubmit(formData) {
@@ -35,20 +35,20 @@ export class EmailComponent implements OnInit {
       console.log(formData.value);
       this.af.auth.signInWithEmailAndPassword(
         formData.value.email,
-        formData.value.password
+        formData.value.password,
       ).then(
         (success) => {
-        console.log(success);
-        this.router.navigate(['/members']);
-      }).catch(
+          console.log(success);
+          this.router.navigate(['/members']);
+        }).catch(
         (err) => {
-        console.log(err);
-        this.error = err;
-      });
+          console.log(err);
+          this.error = err;
+        });
     }
   }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
-    }
+  }
 }

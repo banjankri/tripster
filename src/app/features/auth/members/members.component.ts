@@ -7,13 +7,13 @@ import { fallIn, moveIn, moveInLeft } from '../../../router.animations';
   selector: 'app-members',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
-  animations: [moveIn(), fallIn(), moveInLeft()]
+  animations: [moveIn(), fallIn(), moveInLeft()],
 })
 export class MembersComponent implements OnInit {
 
-    @HostBinding('@moveIn') get moveIn() {
-        return '';
-    }
+  @HostBinding('@moveIn') get moveIn() {
+    return '';
+  }
 
   authState: any;
   state = '';
@@ -29,9 +29,9 @@ export class MembersComponent implements OnInit {
   }
 
   logout() {
-     this.af.auth.signOut();
-     console.log('logged out');
-     this.router.navigateByUrl('/login');
+    this.af.auth.signOut();
+    console.log('logged out');
+    this.router.navigateByUrl('/login');
   }
 
 

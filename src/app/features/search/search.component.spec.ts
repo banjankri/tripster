@@ -10,40 +10,40 @@ import { MaterialModule } from '../../material.module';
 
 describe('Search Component', () => {
 
-    @Component({
-        template: '<aya-search value="initial"></aya-search>'
-    })
+  @Component({
+    template: '<aya-search value="initial"></aya-search>',
+  })
     class TestComponent {}
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-        imports: [
-            BrowserAnimationsModule,
-            MaterialModule
-        ],
-        providers: [],
-        declarations: [SearchComponent, TestComponent]
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+      ],
+      providers: [],
+      declarations: [SearchComponent, TestComponent],
     });
+  });
 
-    it('should contain placeholder', fakeAsync(() => {
-        const fixture = TestBed.createComponent(TestComponent);
-        fixture.detectChanges();
-        tick();
+  it('should contain placeholder', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    tick();
 
-        const input = fixture.debugElement.query(By.css('input'));
+    const input = fixture.debugElement.query(By.css('input'));
 
-        expect(input.nativeElement.placeholder).toEqual('What plant are you after?');
-    }));
+    expect(input.nativeElement.placeholder).toEqual('What plant are you after?');
+  }));
 
-    it('should accept initial value as parameter', fakeAsync(() => {
-        const fixture = TestBed.createComponent(TestComponent);
-        fixture.detectChanges();
-        tick();
+  it('should accept initial value as parameter', fakeAsync(() => {
+    const fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    tick();
 
-        const input = fixture.debugElement.query(By.css('input'));
+    const input = fixture.debugElement.query(By.css('input'));
 
-        expect(input.nativeElement.value).toEqual('initial');
-    }));
+    expect(input.nativeElement.value).toEqual('initial');
+  }));
 
 });

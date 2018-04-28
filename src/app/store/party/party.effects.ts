@@ -10,15 +10,15 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PartyEffect {
-    constructor(
+  constructor(
         private actions$: Actions,
         private plantService: PartyService,
-        private plantActions: PartyActions
+        private plantActions: PartyActions,
     ) {
 
-    }
+  }
 
-    @Effect() search = this.actions$.ofType<PartyAction>(PartyActions.UPCOMING)
+  @Effect() search = this.actions$.ofType<PartyAction>(PartyActions.UPCOMING)
         .map(action => action.payload)
         .switchMap(amount => this.plantService.loadNUpcomingParties(amount))
         .map(parties => this.plantActions.partiesLoaded(parties));

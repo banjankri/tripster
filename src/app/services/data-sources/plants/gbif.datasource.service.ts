@@ -8,28 +8,28 @@ import 'rxjs/observable/throw';
 @Injectable()
 export class GbifDataSourceService {
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http) {
+  }
 
-    searchPlantsByQuery(query: string) {
-        return this.errorWrapper(this.get(`species/search?q=${query}`)
+  searchPlantsByQuery(query: string) {
+    return this.errorWrapper(this.get(`species/search?q=${query}`)
                 .map(res => res.json().results));
-    }
+  }
 
-    plantOccurences(scientificName: string) {
-        return this.errorWrapper(this.get(`occurrence/search?scientificName=${scientificName}`)
+  plantOccurences(scientificName: string) {
+    return this.errorWrapper(this.get(`occurrence/search?scientificName=${scientificName}`)
             .map(res => res.json().results));
-    }
+  }
 
-    private errorWrapper(call: Observable<Response>) {
-        return call.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    }
+  private errorWrapper(call: Observable<Response>) {
+    return call.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
-    private get(url) {
-        return this.http.get(GbifDataSourceService.GBIF_API_URL + url);
-    }
+  private get(url) {
+    return this.http.get(GbifDataSourceService.GBIF_API_URL + url);
+  }
 
-    static get GBIF_API_URL(): string {
-        return 'http://api.gbif.org/v1/';
-    }
+  static get GBIF_API_URL(): string {
+    return 'http://api.gbif.org/v1/';
+  }
 }

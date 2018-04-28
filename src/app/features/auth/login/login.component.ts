@@ -9,39 +9,39 @@ import * as UserActions from './../../../store/user/user.actions';
 
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
 
-    error: any;
+  error: any;
 
-    constructor(public af: AngularFireAuth, private router: Router, private store: Store<AppState>) {
-    }
+  constructor(public af: AngularFireAuth, private router: Router, private store: Store<AppState>) {
+  }
 
-    loginFb() {
-        this.af.auth.signInWithPopup(new firebaseApp.auth.FacebookAuthProvider()).then(this.loginSuccess.bind(this)).catch(
+  loginFb() {
+    this.af.auth.signInWithPopup(new firebaseApp.auth.FacebookAuthProvider()).then(this.loginSuccess.bind(this)).catch(
             this.loginFailed.bind(this));
-    }
+  }
 
-    loginGoogle() {
-        this.af.auth.signInWithPopup(new firebaseApp.auth.GoogleAuthProvider()).then(this.loginSuccess.bind(this)).catch(
+  loginGoogle() {
+    this.af.auth.signInWithPopup(new firebaseApp.auth.GoogleAuthProvider()).then(this.loginSuccess.bind(this)).catch(
             this.loginFailed.bind(this));
-    }
+  }
 
-    private loggedIn(user: User) {
-          if (user) {
-            this.store.dispatch(new UserActions.LoginSuccess(user));
-            this.router.navigate(['/account-details']);
-          }
+  private loggedIn(user: User) {
+    if (user) {
+      this.store.dispatch(new UserActions.LoginSuccess(user));
+      this.router.navigate(['/account-details']);
     }
+  }
 
-    private loginSuccess(success) {
-          this.loggedIn(success.user);
-    }
+  private loginSuccess(success) {
+    this.loggedIn(success.user);
+  }
 
-    private loginFailed(err) {
-        this.error = err;
-    }
+  private loginFailed(err) {
+    this.error = err;
+  }
 }

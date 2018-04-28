@@ -12,62 +12,62 @@ import { Plant } from './../../store/plant/plant.model';
 import { AppState } from './../../store/reducers';
 
 @Component({
-    templateUrl: './plants-list.component.html',
-    styleUrls: [
-        './plant-list.component.scss'
-    ]
+  templateUrl: './plants-list.component.html',
+  styleUrls: [
+    './plant-list.component.scss',
+  ],
 })
 export class PlantsListComponent implements OnDestroy, OnInit {
-    plants$: Observable<Plant[]>;
+  plants$: Observable<Plant[]>;
 
-    displayedColumns = ['canonicalName', 'class'];
+  displayedColumns = ['canonicalName', 'class'];
 
-    dataSource = new MatTableDataSource<Plant>([]);
-    selection = new SelectionModel<Plant>(false, null);
-    searchTerm: string;
+  dataSource = new MatTableDataSource<Plant>([]);
+  selection = new SelectionModel<Plant>(false, null);
+  searchTerm: string;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-    private unsubscribe = new Subject<void>();
+  private unsubscribe = new Subject<void>();
 
-    constructor(private store: Store<AppState>, private plantActions: PlantActions, private activatedRoute: ActivatedRoute) {
-    }
+  constructor(private store: Store<AppState>, private plantActions: PlantActions, private activatedRoute: ActivatedRoute) {
+  }
 
-    plantSelected(plant: Plant, $event: Event) {
-        this.store.dispatch(this.plantActions.plantSelected(plant));
-        this.store.dispatch(new RoutingActions.Go({path: ['/details']}));
+  plantSelected(plant: Plant, $event: Event) {
+    this.store.dispatch(this.plantActions.plantSelected(plant));
+    this.store.dispatch(new RoutingActions.Go({ path: ['/details'] }));
 
-        $event.preventDefault();
-    }
+    $event.preventDefault();
+  }
 
-    applyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
-    searchPlants(term: string) {
-        this.store.dispatch(this.plantActions.search(term));
-    }
+  searchPlants(term: string) {
+    this.store.dispatch(this.plantActions.search(term));
+  }
 
-    ngOnInit() {
-        const querySearchTerm = this.activatedRoute.snapshot.queryParams['query'];
+  ngOnInit() {
+    const querySearchTerm = this.activatedRoute.snapshot.queryParams['query'];
 
-        this.searchTerm = querySearchTerm;
-        this.searchPlants(querySearchTerm);
+    this.searchTerm = querySearchTerm;
+    this.searchPlants(querySearchTerm);
 
-        this.plants$ = this.store.select(getPlants);
-        this.plants$.subscribe(plants => this.initDataSource(plants));
-        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    }
+    this.plants$ = this.store.select(getPlants);
+    this.plants$.subscribe(plants => this.initDataSource(plants));
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+  }
 
-    ngOnDestroy() {
-        this.unsubscribe.next();
-        this.unsubscribe.complete();
-    }
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
 
-    private initDataSource(plants: Plant[]) {
-        this.dataSource = new MatTableDataSource<Plant>(plants);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-    }
+  private initDataSource(plants: Plant[]) {
+    this.dataSource = new MatTableDataSource<Plant>(plants);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
 }

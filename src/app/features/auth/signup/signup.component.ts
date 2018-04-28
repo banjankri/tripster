@@ -7,44 +7,44 @@ import { fallIn, moveIn } from '../../../router.animations';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  animations: [moveIn(), fallIn()]
+  animations: [moveIn(), fallIn()],
 })
 
 export class SignupComponent implements OnInit {
 
-    @HostBinding('@moveIn') get moveIn() {
-        return '';
-    }
+  @HostBinding('@moveIn') get moveIn() {
+    return '';
+  }
 
-    state = '';
-    error: any;
+  state = '';
+  error: any;
 
-    email = '';
-    password = '';
+  email = '';
+  password = '';
 
-    constructor(public af: AngularFireAuth, private router: Router) {
+  constructor(public af: AngularFireAuth, private router: Router) {
 
-    }
+  }
 
-    onSubmit(formData) {
-      if (formData.valid) {
-        console.log(formData.value);
-        this.af.auth.createUserWithEmailAndPassword(
+  onSubmit(formData) {
+    if (formData.valid) {
+      console.log(formData.value);
+      this.af.auth.createUserWithEmailAndPassword(
           formData.value.email,
-          formData.value.password
+          formData.value.password,
         ).then(
           (success) => {
-          console.log(success);
-          this.router.navigate(['/login']);
-        }).catch(
+            console.log(success);
+            this.router.navigate(['/login']);
+          }).catch(
           (err) => {
-          console.log(err);
-          this.error = err;
-        });
-      }
+            console.log(err);
+            this.error = err;
+          });
     }
+  }
 
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }

@@ -10,18 +10,18 @@ import { ActivityActions, ActivityAction } from './activity.actions';
 
 @Injectable()
 export class ActivityEffects {
-    constructor(
+  constructor(
         private actions$: Actions,
         private activityService: ActivityService,
-        private activityActions: ActivityActions
+        private activityActions: ActivityActions,
     ) {
 
-    }
+  }
 
-    @Effect() search = this.actions$.ofType<ActivityAction>(ActivityActions.SEARCH)
+  @Effect() search = this.actions$.ofType<ActivityAction>(ActivityActions.SEARCH)
         .map(action => action.payload)
         .switchMap(searchTerm => this.activityService.search(searchTerm))
         .map(activities => {
-            return this.activityActions.activitiesLoaded(activities);
+          return this.activityActions.activitiesLoaded(activities);
         });
 }

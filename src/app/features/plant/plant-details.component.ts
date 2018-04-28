@@ -7,16 +7,16 @@ import { AppState } from './../../store/reducers';
 
 
 @Component({
-    templateUrl: './plant-details.component.html',
-    styleUrls: ['./plant-details.component.css'],
+  templateUrl: './plant-details.component.html',
+  styleUrls: ['./plant-details.component.css'],
 })
 export class PlantDetailsComponent {
-    plant$: Observable<Plant>;
-    occurences$: Observable<Occurence[]>;
-    zoom = 2;
+  plant$: Observable<Plant>;
+  occurences$: Observable<Occurence[]>;
+  zoom = 2;
 
-    constructor(private store: Store<AppState>) {
-        this.plant$ = store.select(state => state.plantsState.currentPlant);
-        this.occurences$ = store.select(state => state.plantsState.occurences);
-    }
+  constructor(private store: Store<AppState>) {
+    this.plant$ = store.select(state => state.plantsState.currentPlant);
+    this.occurences$ = store.select(state => state.plantsState.occurences);
+  }
 }

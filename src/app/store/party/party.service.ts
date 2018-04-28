@@ -7,11 +7,11 @@ import { GOABaseDataSourceService } from './../../services/data-sources/parties/
 @Injectable()
 export class PartyService {
 
-    constructor(private ds: GOABaseDataSourceService) {
+  constructor(private ds: GOABaseDataSourceService) {
 
-    }
+  }
 
-    loadNUpcomingParties(n: number): Observable<Party[]> {
-        return this.ds.closestNParties(n);
-    }
+  loadNUpcomingParties(n: number): Observable<Party[]> {
+    return this.ds.closestNParties(n);
+  }
 }

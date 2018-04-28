@@ -1,5 +1,5 @@
 export interface Plant {
-    canonicalName?: string;
-    scientificName?:  string;
-    class?: string;
+  canonicalName?: string;
+  scientificName?:  string;
+  class?: string;
 }

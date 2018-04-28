@@ -12,30 +12,30 @@ import { MembersComponent } from './members/members.component';
 import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-    declarations: [
-        LoginComponent,
-        MembersComponent,
-        SignupComponent,
-        EmailComponent,
-        AccountDetailsComponent,
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule.forChild(authRoutes),
-    ],
-    entryComponents: [
-        LoginComponent
-    ],
-    providers: [
-        AngularFireAuth,
-        AuthGuard,
-    ],
-    exports: [
-        FormsModule,
-        ReactiveFormsModule,
-    ]
+  declarations: [
+    LoginComponent,
+    MembersComponent,
+    SignupComponent,
+    EmailComponent,
+    AccountDetailsComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(authRoutes),
+  ],
+  entryComponents: [
+    LoginComponent,
+  ],
+  providers: [
+    AngularFireAuth,
+    AuthGuard,
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AuthModule {
 

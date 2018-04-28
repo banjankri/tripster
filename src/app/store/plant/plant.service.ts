@@ -6,15 +6,15 @@ import { Plant } from './plant.model';
 @Injectable()
 export class PlantService {
 
-    constructor(private ds: GbifDataSourceService) {
+  constructor(private ds: GbifDataSourceService) {
 
-    }
+  }
 
-    search(searchTerm: string): Observable<Plant[]> {
-        return this.ds.searchPlantsByQuery(searchTerm);
-    }
+  search(searchTerm: string): Observable<Plant[]> {
+    return this.ds.searchPlantsByQuery(searchTerm);
+  }
 
-    plantOccurences(plant: Plant) {
-        return this.ds.plantOccurences(plant.scientificName);
-    }
+  plantOccurences(plant: Plant) {
+    return this.ds.plantOccurences(plant.scientificName);
+  }
 }

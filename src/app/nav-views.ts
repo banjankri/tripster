@@ -1,7 +1,7 @@
 export const views: Object[] = [
-    {
-      name: 'Dashboard',
-      icon: 'home',
-      link: ['']
-    }
-  ];
+  {
+    name: 'Dashboard',
+    icon: 'home',
+    link: [''],
+  },
+];

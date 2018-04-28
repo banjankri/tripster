@@ -32,14 +32,14 @@ import { UserModule } from './store/user/user.module';
   declarations: [
     AppComponent,
     DashboardComponent,
-    NotFound404Component
+    NotFound404Component,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'tripster'}),
+    BrowserModule.withServerTransition({ appId: 'tripster' }),
     BrowserAnimationsModule,
     HttpModule,
     StoreRouterConnectingModule.forRoot({
-      stateKey: 'router' // name of reducer key
+      stateKey: 'router', // name of reducer key
     }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -55,6 +55,6 @@ import { UserModule } from './store/user/user.module';
     RoutingModule,
   ],
   providers: [GbifDataSourceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

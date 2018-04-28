@@ -7,7 +7,7 @@ export enum UserActionTypes {
   Logout = '[User] Logout',
   LogoutFail = '[User] Logout Fail',
   LogoutSuccess = '[User] Logout Success',
-  LoginSuccess = '[User] Login Success'
+  LoginSuccess = '[User] Login Success',
 }
 
 export class EditUser implements Action {

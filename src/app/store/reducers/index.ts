@@ -16,10 +16,10 @@ export interface RouterStateUrl {
 }
 
 const modules = {
-  'router': routerReducer,
-  'user': fromUser.userReducer,
-  'activitiesState': activities,
-  'plantsState': plants
+  router: routerReducer,
+  user: fromUser.userReducer,
+  activitiesState: activities,
+  plantsState: plants,
 };
 
 export interface AppState {
@@ -33,7 +33,7 @@ export const syncReducers = {
   router: routerReducer,
   user: fromUser.userReducer,
   activitiesState: activities.activityReducer,
-  plantsState: plants.plantReducer
+  plantsState: plants.plantReducer,
 };
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
@@ -72,7 +72,7 @@ const createReducer = (asyncReducers = {}) => {
 
 // Generate a reducer to set the root state in dev mode for HMR
 function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
-  return function(state: any, action: any) {
+  return function (state: any, action: any) {
     if (action.type === 'SET_ROOT_STATE') {
       return action.payload;
     }
@@ -81,7 +81,7 @@ function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
 }
 
 function logout(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-  return function(state: AppState, action: any): AppState {
+  return function (state: AppState, action: any): AppState {
     if (action.type === '[User] Logout Success') {
       state = undefined;
     }
@@ -89,7 +89,7 @@ function logout(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   };
 }
 
-export function resetOnLogout (reducer: ActionReducer<AppState>): ActionReducer<AppState> {
+export function resetOnLogout(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return function (state, action) {
     let newState;
     if (action.type === '[User] Logout Success') {
