@@ -1,11 +1,8 @@
-import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-
-import { UserService } from './user.service';
+import { StoreModule } from '@ngrx/store';
 import { UserEffects } from './user.effects';
 import { userReducer } from './user.reducer';
-
 
 const STORE_DEV_TOOLS_IMPORTS = [];
 
@@ -16,6 +13,6 @@ const STORE_DEV_TOOLS_IMPORTS = [];
     EffectsModule.forFeature([UserEffects]),
     StoreModule.forFeature('user', userReducer),
   ],
-  providers: [UserService],
+  providers: [],
 })
 export class UserModule {}

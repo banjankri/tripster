@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   user$: Observable<User>;
 
-  constructor(public dialog: MatDialog, private store: Store<AppState>, public af: AngularFireAuth, private router: Router) {
+  constructor(public dialog: MatDialog, private store: Store<AppState>, private af: AngularFireAuth, private router: Router) {
     this.af.authState.subscribe(this.loggedIn.bind(this));
   }
 
@@ -33,6 +33,8 @@ export class AppComponent implements OnInit {
     if (user) {
       this.store.dispatch(new UserActions.LoginSuccess(user));
       this.router.navigate(['/account-details']);
+    } else {
+      this.store.dispatch(new UserActions.Logout());
     }
   }
 

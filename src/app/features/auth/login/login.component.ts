@@ -23,25 +23,25 @@ export class LoginComponent {
     loginFb() {
         this.af.auth.signInWithPopup(new firebaseApp.auth.FacebookAuthProvider()).then(this.loginSuccess.bind(this)).catch(
             this.loginFailed.bind(this));
-      }
+    }
 
-      loginGoogle() {
+    loginGoogle() {
         this.af.auth.signInWithPopup(new firebaseApp.auth.GoogleAuthProvider()).then(this.loginSuccess.bind(this)).catch(
             this.loginFailed.bind(this));
-      }
+    }
 
-      private loggedIn(user: User) {
+    private loggedIn(user: User) {
           if (user) {
             this.store.dispatch(new UserActions.LoginSuccess(user));
             this.router.navigate(['/account-details']);
           }
-      }
+    }
 
-      private loginSuccess(success) {
+    private loginSuccess(success) {
           this.loggedIn(success.user);
-      }
+    }
 
-      private loginFailed(err) {
+    private loginFailed(err) {
         this.error = err;
-      }
+    }
 }

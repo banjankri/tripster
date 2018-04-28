@@ -51,8 +51,8 @@ import { UserModule } from './store/user/user.module';
     PartyModule,
     SearchModule,
     MaterialModule,
-    RoutingModule,
     AuthModule,
+    RoutingModule,
   ],
   providers: [GbifDataSourceService],
   bootstrap: [AppComponent]
