@@ -206,8 +206,12 @@ ol {
 }
 
 .mat-row {
-    &.selected {
+    &.selected,
+    &:hover {
         background: mat-color($accent);
+    }
+    &:hover {
+        cursor: pointer;
     }
 }
 
