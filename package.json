@@ -5,7 +5,8 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build --prod",
+        "build:prod": "ng build --prod",
+        "build:ci": "yarn && yarn run lint && yarn run test && yarn run build:prod",
         "test": "ng test",
         "lint": "ng lint --fix true",
         "e2e": "ng e2e",
