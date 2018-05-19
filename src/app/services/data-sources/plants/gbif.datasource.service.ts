@@ -1,29 +1,29 @@
-
-import { throwError as observableThrowError,  Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-
-import 'rxjs/observable/throw';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Injectable()
 export class GbifDataSourceService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   searchPlantsByQuery(query: string) {
-    return this.errorWrapper(this.get(`species/search?q=${query}`)
-                .map(res => res.json().results));
+    return this.errorWrapper(this.get(`species/search?q=${query}`).pipe(
+            map(res => (<any>res).results)),
+    );
   }
 
   plantOccurences(scientificName: string) {
-    return this.errorWrapper(this.get(`occurrence/search?scientificName=${scientificName}`)
-            .map(res => res.json().results));
+    return this.errorWrapper(this.get(`occurrence/search?scientificName=${scientificName}`).pipe(
+            map(res => (<any>res).results)),
+    );
   }
 
   private errorWrapper(call: Observable<Response>) {
-    return call.catch((error: any) => observableThrowError(error.json().error || 'Server error'));
+    return call.pipe(catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
   }
 
   private get(url) {

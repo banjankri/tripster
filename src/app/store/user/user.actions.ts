@@ -1,5 +1,4 @@
 import { User } from '@firebase/auth-types';
-import { Response } from '@angular/http';
 import { Action } from '@ngrx/store';
 
 export enum UserActionTypes {

@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { NotFound404Component } from './not-found404.component';
 import { AuthModule } from './features/auth/auth.module';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { firebaseConfig } from '../firebase.config';
 import { syncReducers } from './store/reducers';
@@ -37,7 +37,7 @@ import { UserModule } from './store/user/user.module';
   imports: [
     BrowserModule.withServerTransition({ appId: 'tripster' }),
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router', // name of reducer key
     }),

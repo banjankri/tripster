@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs';
+import { from, of } from 'rxjs';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { AppState } from '../reducers';
 import { LogoutFail, LogoutSuccess, UserActionTypes } from './user.actions';
 
@@ -16,15 +17,16 @@ export class UserEffects {
   ) { }
 
   @Effect() logout$ = this.actions$
-    .ofType(UserActionTypes.Logout)
+    .ofType(UserActionTypes.Logout).pipe(
     // .map((action: Logout) => action.payload)
-    .switchMap(() => Observable.fromPromise(this.af.auth.signOut())
-      .mergeMap((res) => Observable.of(
+    switchMap(() => from(this.af.auth.signOut()).pipe(
+      mergeMap(res => of(
         new LogoutSuccess(res),
       ),
-      )
-      .catch((err) => Observable.of(
+      ),
+      catchError(err => of(
         new LogoutFail(err),
       )),
-    );
+    )),
+  );
 }

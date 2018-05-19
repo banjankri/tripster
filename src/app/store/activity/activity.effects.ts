@@ -8,6 +8,8 @@ import { Activity } from './activity.model';
 import { ActivityService } from './activity.service';
 import { ActivityActions, ActivityAction } from './activity.actions';
 
+import { map, switchMap } from 'rxjs/operators';
+
 @Injectable()
 export class ActivityEffects {
   constructor(
@@ -18,10 +20,11 @@ export class ActivityEffects {
 
   }
 
-  @Effect() search = this.actions$.ofType<ActivityAction>(ActivityActions.SEARCH)
-        .map(action => action.payload)
-        .switchMap(searchTerm => this.activityService.search(searchTerm))
-        .map(activities => {
+  @Effect() search = this.actions$.ofType<ActivityAction>(ActivityActions.SEARCH).pipe(
+        map(action => action.payload),
+        switchMap(searchTerm => this.activityService.search(searchTerm)),
+        map((activities) => {
           return this.activityActions.activitiesLoaded(activities);
-        });
+        }),
+      );
 }

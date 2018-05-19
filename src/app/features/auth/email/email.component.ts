@@ -22,7 +22,7 @@ export class EmailComponent implements OnInit {
   password = '';
 
   constructor(public af: AngularFireAuth, private router: Router) {
-    this.af.authState.subscribe(auth => {
+    this.af.authState.subscribe((auth) => {
       if (auth) {
         this.router.navigateByUrl('/members');
       }

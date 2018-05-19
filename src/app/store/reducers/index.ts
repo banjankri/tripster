@@ -1,7 +1,6 @@
-import { StoreModule, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { StoreModule, ActionReducerMap, MetaReducer, ActionReducer, combineReducers } from '@ngrx/store';
 import { Params, RouterStateSnapshot } from '@angular/router';
 import { PlantsState } from './../plant/plant.reducer';
-import { ActionReducer, combineReducers } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { routerReducer, RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
 
@@ -82,10 +81,7 @@ function stateSetter(reducer: ActionReducer<any>): ActionReducer<any> {
 
 function logout(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return function (state: AppState, action: any): AppState {
-    if (action.type === '[User] Logout Success') {
-      state = undefined;
-    }
-    return reducer(state, action);
+    return reducer(action.type === '[User] Logout Success' ? undefined : state, action);
   };
 }
 
