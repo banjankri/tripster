@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/takeUntil';
+
 import { AppState } from '../../store/reducers';
 import * as RoutingActions from './../routing/routing.actions';
 

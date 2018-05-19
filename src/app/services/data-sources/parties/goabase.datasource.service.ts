@@ -1,6 +1,7 @@
+
+import { throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class GOABaseDataSourceService {
   }
 
   private errorWrapper(call: Observable<Response>) {
-    return call.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return call.catch((error: any) => observableThrowError(error.json().error || 'Server error'));
   }
 
   private get(url) {

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '@firebase/auth-types';
 import { Store } from '@ngrx/store';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MOBILE } from './constants';
 import { LoginComponent } from './features/auth/login/login.component';
 import { views } from './nav-views';

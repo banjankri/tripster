@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Occurence } from './../../store/plant/occurence.model';
 import { Plant } from './../../store/plant/plant.model';
 import { AppState } from './../../store/reducers';

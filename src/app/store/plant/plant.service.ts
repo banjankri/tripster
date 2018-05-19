@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { GbifDataSourceService } from './../../services/data-sources/plants/gbif.datasource.service';
 import { Plant } from './plant.model';

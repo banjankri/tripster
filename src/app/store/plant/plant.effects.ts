@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import { PlantService } from './plant.service';
 import { PlantActions, PlantAction } from './plant.actions';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PlantEffects {
