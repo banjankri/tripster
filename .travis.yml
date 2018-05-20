@@ -10,4 +10,4 @@ cache:
    - $HOME/.yarn-cache
 
 script:
-  - npm run build:ci
+  - yarn run build:ci
