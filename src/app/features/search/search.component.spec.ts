@@ -11,7 +11,7 @@ import { MaterialModule } from '../../material.module';
 describe('Search Component', () => {
 
   @Component({
-    template: '<aya-search value="initial"></aya-search>',
+    template: '<app-search value="initial"></app-search>',
   })
     class TestComponent {}
 
