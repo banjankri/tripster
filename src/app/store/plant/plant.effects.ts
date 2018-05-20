@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { PlantService } from './plant.service';
 import { PlantActions, PlantAction } from './plant.actions';
 import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class PlantEffects {
@@ -18,13 +19,15 @@ export class PlantEffects {
 
   }
 
-  @Effect() search = this.actions$.ofType<PlantAction>(PlantActions.SEARCH)
-        .map(action => action.payload)
-        .switchMap(searchTerm => this.plantService.search(searchTerm))
-        .map(activities => this.plantActions.plantsLoaded(activities));
+  @Effect() search = this.actions$.ofType<PlantAction>(PlantActions.SEARCH).pipe(
+        map(action => action.payload),
+        switchMap(searchTerm => this.plantService.search(searchTerm)),
+        map(activities => this.plantActions.plantsLoaded(activities)),
+  );
 
-  @Effect() details = this.actions$.ofType<PlantAction>(PlantActions.PLANT_SELECTED)
-        .map(action => action.payload)
-        .switchMap(plant => this.plantService.plantOccurences(plant))
-        .map(occurences => this.plantActions.occurencesLoaded(occurences));
+  @Effect() details = this.actions$.ofType<PlantAction>(PlantActions.PLANT_SELECTED).pipe(
+        map(action => action.payload),
+        switchMap(plant => this.plantService.plantOccurences(plant)),
+        map(occurences => this.plantActions.occurencesLoaded(occurences)),
+  );
 }

@@ -18,7 +18,7 @@ export class GOABaseDataSourceService {
     );
   }
 
-  private errorWrapper(call: Observable<Response>) {
+  private errorWrapper(call: Observable<any>) {
     return call.pipe(catchError((error: any) => observableThrowError(error.error || 'Server error')));
   }
 

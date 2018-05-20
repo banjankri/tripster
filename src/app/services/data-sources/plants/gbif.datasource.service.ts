@@ -22,7 +22,7 @@ export class GbifDataSourceService {
     );
   }
 
-  private errorWrapper(call: Observable<Response>) {
+  private errorWrapper(call: Observable<any>) {
     return call.pipe(catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
   }
 

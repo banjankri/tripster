@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { PartyService } from './party.service';
 import { PartyActions, PartyAction } from './party.actions';
 import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class PartyEffect {
@@ -18,8 +19,9 @@ export class PartyEffect {
 
   }
 
-  @Effect() search = this.actions$.ofType<PartyAction>(PartyActions.UPCOMING)
-        .map(action => action.payload)
-        .switchMap(amount => this.plantService.loadNUpcomingParties(amount))
-        .map(parties => this.plantActions.partiesLoaded(parties));
+  @Effect() search = this.actions$.ofType<PartyAction>(PartyActions.UPCOMING).pipe(
+        map(action => action.payload),
+        switchMap(amount => this.plantService.loadNUpcomingParties(amount)),
+        map(parties => this.plantActions.partiesLoaded(parties)),
+  );
 }
