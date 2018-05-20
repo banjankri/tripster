@@ -29,6 +29,12 @@ module.exports = function(config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        browsers: ['ChromeHeadless']
+        browsers: ['ChromeHeadless_no_sandbox'],
+        customLaunchers: {
+            ChromeHeadless_no_sandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox', '--disable-setuid-sandbox']
+            }
+        }
     });
 };
